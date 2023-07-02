@@ -11,9 +11,12 @@ const cancelScene = require('./CancelStage');
 bot.use(session());
 const stage = new Stage([confirmScene, cancelScene])
 bot.use(stage.middleware());
-bot.start((ctx) => ctx.reply('bienvenu sur notre bot de gestion des demandes vip vous recevrez un message dès qu une personne demande l accès  VIP'));
-bot.action('confirmer', (ctx) => {
+bot.start((ctx) => ctx.reply('bienvenu sur notre bot de gestion des verification de  paiement vous recevrez un message dès qu une personne fait une demande de verification'));
+bot.action('confirmer ✅', (ctx) => {
     ctx.scene.enter('valider');
+})
+bot.action('Annuler ❌', (ctx) => {
+    ctx.scene.enter('annuler');
 })
 bot.hears('statistique 📊', async(ctx) => {
     const vipUser = await userModel.find({ isPremium: true });

@@ -28,8 +28,8 @@ const confirmScene = new WizardScene('valider', async(ctx) => {
     ctx.telegram.sendChatAction(ctx.chat.id, 'typing');
     documentLink = ctx.message.text;
     // verifier si ces un lien valider avec regex
-    const regex = /^(ftp|http|https):\/\/[^ "]+$/;
-    if (!regex.test(documentLink)) {
+
+    if (!documentLink) {
         return ctx.reply(`entrer un lien valide`);
     }
 
@@ -42,6 +42,7 @@ const confirmScene = new WizardScene('valider', async(ctx) => {
     return ctx.wizard.next()
 }, new Composer().hears(
     'confirmé ✅', async(ctx) => {
+        ctx.telegram.sendChatAction(ctx.chat.id, 'typing');
         const mailOptions = {
             from: AUTH_MAIL,
             to: userEmail,
@@ -49,6 +50,8 @@ const confirmScene = new WizardScene('valider', async(ctx) => {
             html: `<p>votre achat a bien été validé le document est diponible au lien suivant </p>
                 <p style="color:tomato; font-size:25px;"> <b>${documentLink}</b> </p>`
         }
+        ctx.telegram.sendChatAction(ctx.chat.id, 'typing');
+
         await sendEmail(mailOptions)
         ctx.telegram.sendChatAction(ctx.chat.id, 'typing');
         await ctx.reply(`✅✅l'email contenant le lien du document a bien été envoyer à <b>${userEmail}✅✅</b>  `, {...Keyboard.remove(), parse_mode: 'HTML' }, );

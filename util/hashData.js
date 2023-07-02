@@ -1,9 +1,8 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 
-const hashData = async(data) => {
+const hashData = async(data, saltRound = 10) => {
     try {
-        const salt = await bcrypt.genSalt(10);
-        const hashedData = await bcrypt.hash(data, salt);
+        const hashedData = await bcrypt.hash(data, saltRound);
         return hashedData;
     } catch (error) {
         throw error;

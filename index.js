@@ -11,6 +11,7 @@ const bot = require('./bot')
 const { register, login, getMe, setEmargement } = require('./Controlers/user');
 const { addDemandeVip, getDemandeVip } = require('./Controlers/demandeVip');
 const { checkAuth, isAdmin } = require('./Controlers/middlewares/auth');
+const { sendOtp, verifyOtp } = require('./Controlers/otp');
 const { DB_CON_STRING } = process.env
 db();
 
@@ -27,6 +28,8 @@ app.get('/', (req, res) => {
 // authenticate
 app.post('/api/register', register)
 app.post('/api/login', login)
+app.post('/api/otp', sendOtp)
+app.post('/api/verifyOtp', verifyOtp)
     // demander vip
 app.post("/api/demandeVip", addDemandeVip)
 app.get('/api/demandeVip', [isAdmin], getDemandeVip)

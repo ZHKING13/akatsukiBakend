@@ -30,8 +30,8 @@ const addDemandeVip = async(req, res) => {
         const inlineKeyboard = {
             inline_keyboard: [
                 [
-                    { text: "valider Achat ✅", callback_data: 'Annuler achat ❌' },
-                    { text: "Annuler achat ❌", callback_data: 'Annuler achat ❌' }
+                    { text: "valider Achat ✅", callback_data: 'confirmer ✅' },
+                    { text: "Annuler achat ❌", callback_data: 'Annuler ❌' }
                 ],
             ],
         };
