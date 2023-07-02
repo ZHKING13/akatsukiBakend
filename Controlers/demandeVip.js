@@ -9,7 +9,7 @@ const addDemandeVip = async(req, res) => {
     // try catch block
     try {
 
-        const { numero, email } = req.body;
+        const { numero, email, document } = req.body;
         // verifier si le numero est fourni
         if (!numero || !email) {
             return res.status(404).json({
@@ -26,7 +26,7 @@ const addDemandeVip = async(req, res) => {
                 numero,
             })
             // envoyer la réponse
-        const message = `📩📩📩 Nouvelle demande de verification 📩📩📩 : \n email : ${email} . \n Numéro : ${numero} \n `;
+        const message = `📩📩📩 Nouvelle demande de verification 📩📩📩 :\n document: ${document} \n email : ${email} . \n Numéro : ${numero} \n `;
         const inlineKeyboard = {
             inline_keyboard: [
                 [
