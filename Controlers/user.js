@@ -1,5 +1,5 @@
 const userModel = require("../Models/user");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
 const dotenv = require('dotenv').config()
 const { TOKEN_KEY } = process.env
